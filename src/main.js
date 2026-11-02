@@ -3,6 +3,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import './style.css';
 import { createPitch } from './world/pitch.js';
 import { createStadium } from './world/stadium.js';
+import { TEAMS } from './config.js';
+import { labels } from './labels.js';
 import { MatchBall } from './entities/ball.js';
 import { Match } from './sim/match.js';
 import { CameraRig } from './camera.js';
@@ -63,7 +65,9 @@ scene.add(rim);
 const pitch = createPitch();
 scene.add(pitch.group);
 
-const stadium = createStadium();
+const stadium = createStadium({
+  ledText: labels.ledText || `${TEAMS[0].name}  ·  ${TEAMS[1].name}  ·  LIVE  `,
+});
 scene.add(stadium.group);
 
 const ball = new MatchBall();

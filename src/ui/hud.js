@@ -92,8 +92,8 @@ export class HUD {
   }
 
   showGoal({ team, scorer, number, score }) {
-    const names = ['NORTHGATE', 'RIVERMOUTH'];
-    this.goalSub.textContent = `No.${number} ${scorer} · ${names[team]} · ${score[0]}–${score[1]}`;
+    const name = this.match.teams?.[team]?.name ?? '';
+    this.goalSub.textContent = `No.${number} ${scorer} · ${name} · ${score[0]}–${score[1]}`;
     this.goalOverlay.classList.add('show');
     clearTimeout(this._goalTimer);
     this._goalTimer = setTimeout(() => this.goalOverlay.classList.remove('show'), 4200);

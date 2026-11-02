@@ -81,7 +81,7 @@ function sweepProfile(profile, segs = 200) {
   return geo;
 }
 
-function buildBowl() {
+function buildBowl(ledText) {
   const group = new THREE.Group();
   const concreteMat = new THREE.MeshStandardMaterial({
     color: 0x2a2f38,
@@ -156,7 +156,9 @@ function buildBowl() {
   group.add(roof);
 
   // LED advertising ring
-  const ledTex = makeAdTexture('JUNCTION STADIUM  ·  NORTHGATE  ·  RIVERMOUTH  ·  LIVE  ');
+  const ledTex = makeAdTexture(
+    ledText || 'JUNCTION STADIUM  ·  NORTHGATE  ·  RIVERMOUTH  ·  LIVE  ',
+  );
   ledTex.repeat.set(22, 1);
   const ledProfile = [
     { o: -3.4, y: 0.12 },
@@ -256,13 +258,13 @@ function buildFloodlights() {
   return { group, positions };
 }
 
-export function createStadium() {
+export function createStadium({ ledText } = {}) {
   const group = new THREE.Group();
 
   const sky = buildSky();
   group.add(sky);
 
-  const bowl = buildBowl();
+  const bowl = buildBowl(ledText);
   group.add(bowl.group);
 
   const crowd = createCrowd(bowl.seats);
