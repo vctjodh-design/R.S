@@ -109,6 +109,14 @@ little deeper without either being handed the result. Every player also gets an
 which moves vision, composure, marking and discipline, so composed, tidy players
 pick better passes and panic less.
 
+### The match record
+When a match finishes the engine posts a full record to the host page: goals with
+their minute, scorer and assist, the half-time and second-half score, corners,
+cards and shots on target for each side, and a line for every player. A host can
+grade a bookmaker's board against that record — every market, from the 1X2 to
+exact scores, quarter-line handicaps, corners and cards — without the engine
+knowing or caring what the prices were.
+
 ### Batch runs
 A host page can ask for the same fixture N times: the panel above the pitch takes
 a match count (1–50), a speed of 1–20×, and shows each round's scoreline when the
