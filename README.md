@@ -90,6 +90,16 @@ free kick, everyone outside the box for a penalty, and a proper dead-ball delay
 while players walk into position. Crosses are contested as aerial duels that can
 end in a header on goal or a clearance.
 
+### Real squads and form (optional)
+The engine runs its own clubs by default. A host page can instead hand it a
+profile of two real teams — `src/sim/form-profile.js` reads recent results, team
+statistics and per-player ratings, then supplies the formation, the predicted XI
+(names, numbers, ratings) and bloom signals per player. Player attributes start
+from the role baseline and shift by what the player actually did (shot and pass
+value, duel win rates, discipline, minutes); team tactics blend the club's own
+press/line/tempo profile with the engine's baseline. The inputs are descriptive
+only — they change *how* the two sides play, not who wins.
+
 ## Structure
 
 ```
