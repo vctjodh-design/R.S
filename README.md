@@ -117,6 +117,13 @@ grade a bookmaker's board against that record — every market, from the 1X2 to
 exact scores, quarter-line handicaps, corners and cards — without the engine
 knowing or caring what the prices were.
 
+Goals come out of that record honestly, so the engine has to defend as well as
+attack: defenders goal-side of a shooter block it, shots spread wider with range,
+pressure and fatigue, and a keeper gets a real chance at any shot that reaches
+the line. `node engine-bench.mjs 20` replays matches headlessly and prints the
+goal, shot and scoreline distribution — it should read about 2.5–2.7 goals a
+game with 0-0, 1-0 and 2-0 all plausible.
+
 ### Batch runs
 A host page can ask for the same fixture N times: the panel above the pitch takes
 a match count (1–50), a speed of 1–20×, and shows each round's scoreline when the
