@@ -100,6 +100,24 @@ value, duel win rates, discipline, minutes); team tactics blend the club's own
 press/line/tempo profile with the engine's baseline. The inputs are descriptive
 only — they change *how* the two sides play, not who wins.
 
+The profile also carries two more descriptive inputs. A club's **league-table**
+row travels with it: distance from the league's average points per game nudges
+squad quality inside a ±1.2% band and shifts press, line height and risk by a few
+hundredths, so a leader carries itself a little higher and a struggler sits a
+little deeper without either being handed the result. Every player also gets an
+**intelligence** signal — pass volume and accuracy, key passes and discipline —
+which moves vision, composure, marking and discipline, so composed, tidy players
+pick better passes and panic less.
+
+### Batch runs
+A host page can ask for the same fixture N times: the panel above the pitch takes
+a match count (1–50), a speed of 1–20×, and shows each round's scoreline when the
+batch is done. Rounds replay the identical squads, ratings and tactics through
+`Match.restartMatch()`; only the match itself differs, so a run of ten is ten
+real simulations rather than ten re-rolls of player quality. The engine drives
+the loop and reports progress over `postMessage`; above 4× it stops drawing
+frames so the match clock, not the GPU, sets the pace.
+
 ## Structure
 
 ```
@@ -119,6 +137,8 @@ src/audio.js            synthesized crowd and match sounds
 ```
 
 A match clock runs at 12×, so 90 minutes takes about seven and a half real
-minutes; playback speed can be raised from the dock.
+minutes; playback speed can be raised from the dock. When a batch runs above 4×
+the engine skips drawing frames and steps the match inside a per-frame time
+budget instead, which is what makes 20× reachable.
 
 `artifacts/` holds a few reference screenshots.
