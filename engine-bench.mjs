@@ -25,6 +25,10 @@ const goals = [];
 const scores = {};
 const shots = [];
 const sot = [];
+const homeGoals = [];
+const awayGoals = [];
+const homeShots = [];
+const awayShots = [];
 for (let i = 0; i < N; i++) {
   const match = new Match(new THREE.Scene(), new MatchBall(), {});
   match.startMatch();
@@ -36,6 +40,10 @@ for (let i = 0; i < N; i++) {
   const h = match.score[0];
   const a = match.score[1];
   goals.push(h + a);
+  homeGoals.push(h);
+  awayGoals.push(a);
+  homeShots.push(match.stats[0].shots || 0);
+  awayShots.push(match.stats[1].shots || 0);
   scores[`${h}-${a}`] = (scores[`${h}-${a}`] || 0) + 1;
   shots.push((match.stats[0].shots || 0) + (match.stats[1].shots || 0));
   sot.push((match.stats[0].onTarget || 0) + (match.stats[1].onTarget || 0));
@@ -43,6 +51,7 @@ for (let i = 0; i < N; i++) {
 }
 const avg = (xs) => xs.reduce((s, x) => s + x, 0) / xs.length;
 const share = (pred) => Object.entries(scores).filter(([k]) => pred(k)).reduce((s, [, v]) => s + v, 0) / N;
+console.log(`\nhome ${avg(homeGoals).toFixed(2)} goals from ${avg(homeShots).toFixed(1)} shots · away ${avg(awayGoals).toFixed(2)} from ${avg(awayShots).toFixed(1)}`);
 console.log(
   `\nmatches ${N} · avg goals ${avg(goals).toFixed(2)} · shots ${avg(shots).toFixed(1)} · on target ${avg(sot).toFixed(1)} · conversion ${((avg(goals) / avg(shots)) * 100).toFixed(1)}%`,
 );
