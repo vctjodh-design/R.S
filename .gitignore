@@ -5,3 +5,7 @@ dist/
 
 # imported app (own repository)
 browser-control/
+
+# Screenshots and run output produced while working; they belong in the chat,
+# not in the repository.
+artifacts/
